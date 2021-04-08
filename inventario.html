@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>control de inventario</title>
+</head>
+<body>
+    <h1>REGISTRO DE PRODUCTOS</h1>
+    <form>
+        <label for="IntroId">
+            ID: <input type="text" id="IntroId" placeholder="Ingrese Código"><br><br>
+        </label>
+        <label for="IntroNombre">
+            NOMBRE: <input type="text" id="IntroNombre"><br><br>
+        </label>
+        <label for="IntroCantidad">
+            CANTIDAD: <input type="number" id="IntroCantidad"><br><br>
+        </label>
+        <label for="IntroPrecio">
+            PRECIO: <input type="text" id="IntroPrecio"><br><br>
+        </label>
+
+        <button type="button" id="btnNuevo">Guardar</button>
+        <button type="button" id="btnBuscar">Buscar</button>
+        <button type="button" id="btnEliminar">Eliminar</button>
+        <button type='button' id='btnListar'>Listar</button>
+        <button type="reset">Cancelar</button><br><br>
+    </form>
+    <div id="resultado" style="border: 2px solid black; padding: 10px; width: 300px;"> <h2>MOSTRAR PRODUCTOS</h2></div>
+    <script src='js/inventario.js'></script>
+</body>
+</html>

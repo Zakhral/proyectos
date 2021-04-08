@@ -31,10 +31,10 @@ let Grupo=function(){    //edArrayGrupo
         this.datos.push(nuevo);
     }
     this.buscar=function(nombre){
-        let existe=true;
-        //busqueda
-        if(existe)
-            return this.datos[0];
+        let existe=this.datos[nombre];
+        for(let i=0;i<this.datos.length;i++)
+        if(existe==nombre)
+            return this.datos[i];
         else
             return null;
     }
@@ -81,7 +81,6 @@ btnBuscar.addEventListener('click',()=>{
  
 let btnListar=document.getElementById('btnListar');
 btnListar.addEventListener('click',()=>{
-    document.getElementById('resultados').innerHTML=" ";
     let res=document.getElementById('resultados');
     res.innerHTML+="<h1>LISTADO</h1>" + grupo2c.listar();
 })
