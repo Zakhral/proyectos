@@ -26,33 +26,47 @@ let Control=function()
         this.inicio=nuevo;
       else
       {
-        if(this.inicio.id>nuevo.id)
+        if(this.inicio.id<nuevo.id && this.inicio.siguiente==null)
         {
-          this.inicio.anterior=nuevo;
-          nuevo.siguiente=this.inicio;
-          this.inicio=nuevo;
+          this.inicio.siguiente=nuevo;
+          nuevo.anterior=this.inicio;
+
         }
         else
         {
-          let t=this.inicio;
-          while(t.siguiente!=null)
-            t=t.siguiente;
+          if(this.inicio.id>nuevo.id)
+          {
+            this.inicio.anterior=nuevo;
+            nuevo.siguiente=this.inicio;
+            this.inicio=nuevo;
+            return true;
+          }
+          else
+          {
+            let t=this.inicio;
+            while(t.siguiente!=null)
               if(t.id>nuevo.id)
               {
                 nuevo.siguiente=t;
                 nuevo.anterior=t.anterior;
                 t.anterior.siguiente=nuevo;
                 t.anterior=nuevo;
+                return true;
               }
               else
               {
+                t=t.siguiente;
+                if(t.siguiente==null)
+                {
                 t.siguiente=nuevo;
                 nuevo.anterior=t;
+                return true;
+                }
               }
-        }
+            }   
+        } 
       }
-      console.log(nuevo);
-      
+    console.log(nuevo);
     }
 
     this.buscar=function(id)
@@ -80,29 +94,42 @@ let Control=function()
 
     this.eliminar = function (id)
     { 
-      let t=this.inicio;
-      if (this.inicio.id==id)
+      let vacio="";
+      if(vacio==id)
       {
-        this.inicio=this.inicio.siguiente;
-        this.inicio.anterior=null;
+        return false;
       }
       else
       {
-        let t=this.inicio;
-        while(t.siguiente!=null)
-          if (t.id==id)
-          {
-            t.siguiente.anterior=t.anterior;
-            t.anterior.siguiente=t.siguiente;
-            return true;
-          }
-          else
-          {
-            t=t.siguiente;
-          }
+        if (this.inicio.id==id)
+        {
+          this.inicio=this.inicio.siguiente;
+          this.inicio.anterior=null;
+        }
+        else
+        {
+              let t=this.inicio;
+              while(t.siguiente!=null)
+                if (t.id==id)
+                {
+                  t.siguiente.anterior=t.anterior;
+                  t.anterior.siguiente=t.siguiente;
+                  return true;
+                }
+                else
+                  {
+                    t=t.siguiente;
+                    if(t.siguiente==null)
+                    {
+                      t=t.anterior;
+                      t.siguiente=null;
+                      return true;
+                    }
+                  }
         return false;
+        }
       }
-    }
+    }  
   };
 
   
